@@ -2,6 +2,8 @@
   (:require [status-im.components.styles :as styles]
             [status-im.utils.utils :as utils]))
 
+(def tabs-height 62)
+
 (def component-styles
   {:status-bar            {:default     {:height    20
                                          :bar-style "default"
@@ -148,7 +150,10 @@
    :bottom-gradient       {:height 1}
    :input-label           {:left 0}
    :input-error-text      {:margin-left 0}
-   :main-tab-list         {:margin-bottom 72}
+   :main-tab-list         (fn [tabs-hidden?]
+                            {:margin-bottom (if tabs-hidden?
+                                              (+ (- 78 tabs-height) 4)
+                                              78)})
    :toolbar-search-input  {:padding-left 10}
    :toolbar-nav-action    {:width           46
                            :height          56

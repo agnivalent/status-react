@@ -21,9 +21,10 @@
   {:flex             1
    :background-color toolbar-background2})
 
-(def contacts-list-container
-  (merge (get-in p/platform-specific [:component-styles :main-tab-list])
-         {:flex 1}))
+(defn contacts-list-container [tabs-hidden?]
+  (let [main-tab-list-fn (get-in p/platform-specific [:component-styles :main-tab-list])]
+    (merge {:flex 1}
+           (main-tab-list-fn tabs-hidden?))))
 
 (def contacts-list
   {:background-color color-white})

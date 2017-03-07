@@ -136,9 +136,10 @@
 (def chats-container
   {:flex 1})
 
-(def list-container
-  (merge (get-in p/platform-specific [:component-styles :main-tab-list])
-         (get-in p/platform-specific [:component-styles :chat-list :list-container])))
+(defn list-container [tabs-hidden?]
+  (let [main-tab-list-fn (get-in p/platform-specific [:component-styles :main-tab-list])]
+    (merge (main-tab-list-fn tabs-hidden?)
+           (get-in p/platform-specific [:component-styles :chat-list :list-container]))))
 
 (def toolbar-actions
   {:flex-direction :row

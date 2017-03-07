@@ -2,7 +2,8 @@
   (:require [status-im.components.styles :refer [color-white
                                                  color-light-gray
                                                  color-blue]]
-            [status-im.components.toolbar.styles :refer [toolbar-background2]]))
+            [status-im.components.toolbar.styles :refer [toolbar-background2]]
+            [status-im.utils.platform :as p]))
 
 ;; Common
 
@@ -137,6 +138,10 @@
 (def discover-container
   {:flex            1
    :backgroundColor color-white})
+
+(defn list-container [tabs-hidden?]
+  (let [main-tab-list-fn (get-in p/platform-specific [:component-styles :main-tab-list])]
+    (main-tab-list-fn tabs-hidden?)))
 
 (def search-icon
   {:width  17
